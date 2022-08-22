@@ -1,0 +1,48 @@
+1. Daemon THread --> 
+
+psvm(String args[]){
+
+ 	new Thread() {	
+	{
+	//	setName("My Thread");
+		setDaemon(true);
+	}
+	
+	@override
+	public void run() {
+		sysouet("This thread name is : " + Thread.currentThread().getName());
+	
+		try{
+			Thread.sleep(5000);
+		} catch (InterruptedException ex){
+			hrow new untimeException(ex);
+		}
+	}
+}.start();
+
+sysout("Thread : " + Thread.currentThread().getName());
+
+
+}
+
+
+2. Canonicalisation -> String immutability. Integer default -127 to 127 (cached objects) 
+Integer int1 = 25; Integer int2 = 25; int1==int2 (true) --> fetched from cache and no new onj is created
+Integer int1 = 250; Integer int2 = 250; int1==int2 (false) --> new object
+
+3. Objects referred from outof heap are referred as root objects by GC.
+
+4. Stack , Heap, Non Heap area
+
+5. Tracing Collector --> all collectors in java are tracing collector. GC from root starts tracing the linked objects mark them reachable.
+
+6. java.nio --> very good. ByteBuffer bf = ByteBuffer.allocateDirect(300000) --> allocate memory off Heap space (outside heap). 
+						ByteBuffer.allocate(300000) --> within heap
+					bf.put("anythin") --> many utility methods to write/read data from buffer.
+					Many servers are written on top of nio library which provides support for IO operations.
+
+7. jconsole, Eclise Memeory Analyzer Tool.
+8. jps --> to find PIDs.  jmap to create heap. Use Eclipse MAT to analyze the heap.
+9. BofA uses AppDynamics, other are Dynatrace, jprobe
+10. Thread states --> NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED
+
