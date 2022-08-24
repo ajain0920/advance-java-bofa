@@ -45,4 +45,47 @@ Integer int1 = 250; Integer int2 = 250; int1==int2 (false) --> new object
 8. jps --> to find PIDs.  jmap to create heap. Use Eclipse MAT to analyze the heap.
 9. BofA uses AppDynamics, other are Dynatrace, jprobe
 10. Thread states --> NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, TERMINATED
+11. Read Barrier Write Barrier
+12. JVM controls allowing thrreads to enter synchronized blocks. How? Do they spin on lock? do they keep running and checking if synchronized block is available to enter. Kepp Lock count? or just when lock!=0 and suspend the thread (Low context switching).v Lock stripping.
+12. Context Switching ( cause poor performance). knowledge check: AMDHALS Law 
+13. wait and notify --> system ad
+14. Reference Knowledge: Synchronization and java memory model -> Dough Lea with small example
+15. Important: Use while instead of if to check condition to call wait(). To overcome surious call. Like notify is called when it was not intended to. 
+public void synchronized put(String value){
+	while(list.size == max_size){
+		try{ 
+			this.wait();
+		}catch(InterruptedExceptions ex){
+			throe new RuntimeException(ex);		
+		}
+		values.add(value)
+	}
+}
 
+public synchronized String take(){
+	String value = values.remove();
+	notify();
+	return value;
+} 
+
+16. TIMED_WAITING --> wait(timeout) --> release the  lock or Thread.sleep(sleepTime) --> will not release the lock.
+17. Interrupt and join both require reference of the thread. 
+18. Join should not be called on current thread as it will block current thread.
+19. ThreadLocal --> keep state at thread level. T1 --> threadLocal.setValue("thread1") ; T2 --> threadLocal.setValue("thread2")
+T1 --> threadLocal.getvalue() --> t1  while in T2 --> it will return t2.  (same reference of threadLocal maintain state at thread level)
+20. session per thread youtube Hibernateession in jpa muhammad shakir
+21. :Let JVM warm up. 
+22. Elision
+23. java.util.concurrent.Lock --> instead 
+24. JCP --> Java Community Process -> JSRs
+25. Deadlocks --> jconsole --> threads --> Detect Deadlock
+26. Deadlock through stack trace --> command prompt --> jps to find pid --> jstack <pid>  will show u stacktrace with deadlock information
+27. Locks --> eg ReentrantLock. It does not use synchronization. Different mechanism. Ready made solutions to acquier lock and notfy waiting threads. java.util.concurrent.lock.Condition instead of wait and notify. Condition.await() and Condition.signal(). Because wait and notify will work with synchronized keyword (native implementation) else they will through IllegalStateMonitorException. While Lock API uses java logic to manage synchronization. Look into Lock api implementation.
+28. Multiple reads, few writes. --> read should not block other reads if the state is not modified. 
+ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+Lock writeLock = readwritelock.writeLock();
+Lock readLock = readWriteLock.readLock(); 
+29. Java Concurrent animated. by Victor Grazi --visualizer api jar download.
+30. Carrier Advice --> know about Functional Java In and Out. Learn Scala (framework)--> very important
+31. BlockingQueue --> ArrayBlockingQueue Thread Safe datastructure. No need to use any synchronisation or locking mechanism. 
+32. ThreadPoolExecutor --> use to create pool of threads.
