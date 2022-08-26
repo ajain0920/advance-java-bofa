@@ -99,3 +99,21 @@ Applciation server will call encoding service with file details eg zencoder --> 
 39. ForkJoinPool --> to introduce parallelism Has total number of thread that can be executed on ur machine. i,e total number of cores on one's machine.Works on Work Stealing Algorithm, RecusriveTask returns value, RecursiveAction does not return value.
 40. Functional Interfaces. Outside Varibales used inside lambda expression should be effectively final. 
 41. parallel stream. --> should be use with batch jobs or cron processes where we have few/one request creating parallel stream at a time. because parallel stream uses fork join pool that created threads for each core available. creating more parallel streams will use same fork join pool and add load to existing pool. this will degraed performance of parallel execution.
+parallelstream is blocking when we use collect to list. 
+42. CompletableFuture is non blocking as it runs on fork join pool but it do not have benefit of manipulating inputs like how streams does.
+projectreactor.io --> api ( interacts with 3 api function api, completablefuture and streams)
+duration --> api
+ProjectorReactor --> Flux O(1|N) either of size of one or N. for huge data processing in parallel without blockinh the calling method/thread. During WebFlux uses
+AKKA --> another framework. 
+43. OPtional
+44. Calendar --> not thread safe. when use to define timezone, ur application will work on only one time zone as. CalendargetInstance().setTimeZone() --> singleton object calendar.. time zone will be same 
+Thread Safe --> LocalDate.now() and LocalTime.now(), ZonedDateTime.now() --> for current date/time/time with timezone.
+LocalDate.of(2024, 11, 2) --> 2024-11-2
+parse, getDayOfWeek, ZoneId
+45. Base64
+
+kirk pepperdine
+ben evans
+victor grazi
+Heinz Kabuls
+Gill Tene

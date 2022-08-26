@@ -47,7 +47,8 @@ public class StreamsDemo2 {
         List<String> allCities = customers
                 .stream()
                 .flatMap(x -> x.getAddresses().stream())
-                .map(x -> x.getLine1())
+//                .map(x -> x.getLine1())
+                .map(CustomerAddress::getLine1)
                 .sorted()
                 .distinct()
                 .collect(Collectors.toList());

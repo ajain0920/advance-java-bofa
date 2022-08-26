@@ -36,6 +36,7 @@ public class StreamsDemo {
                     return x.contains("MORGAN");
                 })
                 .collect(Collectors.toList());
+
         long end = System.currentTimeMillis();
         System.out.println(processedNames + " -- " + (end - start));
 
