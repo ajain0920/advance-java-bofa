@@ -10,7 +10,7 @@ public class ThreadPoolExecutorDemo {
                 5000L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(15));
         int taskCount = 0;
         CountDownLatch cl = new CountDownLatch(50);
-        Semaphore lock = new Semaphore(15); // Size = Blocking que size + Thread Pool Size
+        Semaphore lock = new Semaphore(19); // Size = Blocking que size + Thread Pool Size -- not working for 20 but for 19
         while(taskCount < 50) {
             final int task = taskCount++;
             lock.acquire();

@@ -89,3 +89,13 @@ Lock readLock = readWriteLock.readLock();
 30. Carrier Advice --> know about Functional Java In and Out. Learn Scala (framework)--> very important
 31. BlockingQueue --> ArrayBlockingQueue Thread Safe datastructure. No need to use any synchronisation or locking mechanism. 
 32. ThreadPoolExecutor --> use to create pool of threads.
+33. Callable vs Runnable. Runnable does not return any value nor throws any exception. Callable return as well as throws exception in call method. ExecutorService.submit(Callable callable)  returns Furutre object
+34. Future Object --> future.get() --> throws ExecutionException, InterruptedException 
+35. Video upload. (may be in any format .mov, .mp4, webm, .ogg etc) Javascript uploads the file from client to AWS - S3. AWS return file url and other details to client. Client pass the file details to application server. 
+Applciation server will call encoding service with file details eg zencoder --> use for encoding the files. To make file available in different formats, different encoding is required eg .mov is uploaded by client, one need encoding it to .mp4, .webm, .ogg etc to make the file compatible with different clients(windows, Mac, Unix, mobile android, ipad, etc). this task is marked complete when all these encodings are complete which can be run parallel in executionservice.  Only after that a flag is set that file upload complete in database. 
+36. Semaphore -->  
+37. Atomic Variables
+38. Cyclic Barriers --> use for parallelism. multiple threads with run and wait until all reach to same place. Example sorting, which can be broken into smaller tasks of same nature/type. that can be solved using recurssion.  
+39. ForkJoinPool --> to introduce parallelism Has total number of thread that can be executed on ur machine. i,e total number of cores on one's machine.Works on Work Stealing Algorithm, RecusriveTask returns value, RecursiveAction does not return value.
+40. Functional Interfaces. Outside Varibales used inside lambda expression should be effectively final. 
+41. parallel stream. --> should be use with batch jobs or cron processes where we have few/one request creating parallel stream at a time. because parallel stream uses fork join pool that created threads for each core available. creating more parallel streams will use same fork join pool and add load to existing pool. this will degraed performance of parallel execution.
